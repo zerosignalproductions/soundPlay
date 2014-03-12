@@ -3,7 +3,9 @@
   "name": "listen2EDM",
   "version": "0.0.1",
   "homepage": "http://listen2edm.com",
-  "dependencies": {},
+  "dependencies": {
+    "express": ""
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-recess": "~0.3.0",
