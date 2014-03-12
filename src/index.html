@@ -3,82 +3,97 @@
   <head>
     <title ng-bind="pageTitle"></title>
 
-    <!-- social media tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@joshdmiller">
-    <meta name="twitter:title" content="ngBoilerplate">
-    <meta name="twitter:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
-    <meta name="twitter:creator" content="@joshdmiller">
-    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
+    <meta name="twitter:site" content="@Listen2EDM">
+    <meta name="twitter:title" content="Listen2EDM">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:image:src" content="">
+
     <meta property="og:title" content="ngBoilerplate" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://bit.ly/ngBoilerplate" />
-    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846" />
-    <meta property="og:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
+    <meta property="og:url" content="http://listen2edm.com" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="">
 
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <script type="text/javascript" src="//connect.soundcloud.com/sdk.js"></script>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <!-- it's stupid to have to load it here, but this is for the +1 button -->
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-      { "parsetags": "explicit" }
-    </script>
+    
   </head>
   <body>
-    <div class="container">
-      <div class="masthead">
-        <h3 class="muted">ng-boilerplate <small><a
-              href="http://github.com/joshdmiller/ng-boilerplate/blob/master/CHANGELOG.md">v<%= version %></a></small></h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li ui-route="/home" ng-class="{active:$uiRoute}">
-                  <a href="#/home">
-                    <i class="icon-home"></i>
-                    Home
-                  </a>
-                </li>
-                <li ui-route="/about" ng-class="{active:$uiRoute}">
-                  <a href="#/about">
-                    <i class="icon-info-sign"></i>
-                    What is it?
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/joshdmiller/ng-boilerplate#readme">
-                    <i class="icon-book"></i>
-                    Read the Docs
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/joshdmiller/ng-boilerplate">
-                    <i class="icon-github-alt"></i>
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/joshdmiller/ng-boilerplate/issues">
-                    <i class="icon-comments"></i>
-                    Support
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Listen2EDM<sup>alpha</sup></a>
+        </div>      
+        <div class="collapse navbar-collapse">      
+          <ul class="nav navbar-nav navbar-right">
+            <li ui-route="/home" ng-class="{active:$uiRoute}">
+              <a href="#/home">
+                <i class="icon-home"></i>
+                Home
+              </a>
+            </li>
+            <li ui-route="/about" ng-class="{active:$uiRoute}">
+              <a href="#/about">
+                <i class="icon-info-sign"></i>
+                About
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="icon-mail"></i>
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
+    </nav>
+
+    <div class="nav-content-container">
+      <div class="content-aside"></div>
+      <div class="container" ui-view="main"></div>
+    </div>
+
+    <div class="audio-player-container">
+      <div class="container">
+        <audio data-player-control="audioPlayer" data-playlist="playlist" data-player-name="audioPlayer" audio-player>
+          <source src="">
+        </audio>
+
+        <ul class="nav">
+          <li class="back-button" ng-click="audioPlayer.prev()">
+            <i class="icon-step-backward"></i>
+          </li>
+          <li class="playpause-button">
+            <a ng-click="audioPlayer.playPause()"><i class="icon-play" ng-show="!audioPlayer.playing"></i><i class="icon-pause" ng-show="audioPlayer.playing"></i></a>
+          </li>
+          <li class="next-button" ng-click="audioPlayer.next()">
+            <i class="icon-step-forward"></i>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <div class="container" ui-view="main"></div>
-
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container">
         <div class="footer-inner">
           <ul class="social">
@@ -87,22 +102,8 @@
             <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="icon-linkedin-sign"></i></a></li>
             <li><a target="_blank" href="http://github.com/joshdmiller/ng-boilerplate"><i class="icon-github-sign"></i></a></li>
           </ul>
-          
-
-          <p>
-            (c) 2013 Josh David Miller. 
-            <a href="http://github.com/joshdmiller/ng-boilerplate/fork_select">Fork this</a>
-            to kickstart your next project.
-            <br />
-            ng-boilerplate is based on
-            <a href="http://www.angularjs.org">AngularJS</a>,
-            <a href="http://getbootstrap.com">Bootstrap</a>, 
-            <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>,
-            and 
-            <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.        
-          </p>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </body>
 </html>

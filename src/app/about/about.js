@@ -1,5 +1,6 @@
 angular.module( 'ngBoilerplate.about', [
-  'ui.state',
+  'ui.router',
+  'listen2EdmServices',
   'placeholders',
   'ui.bootstrap'
 ])
@@ -17,13 +18,13 @@ angular.module( 'ngBoilerplate.about', [
   });
 })
 
-.controller( 'AboutCtrl', function AboutCtrl( $scope ) {
-  // This is simple a demo for UI Boostrap.
+.controller( 'AboutCtrl', ['$scope', 'trackData', function ( $scope, trackData ) {
+  $scope.currentTrack = trackData.getCurrentTrack();
+
+  //This is simple a demo for UI Boostrap.
   $scope.dropdownDemoItems = [
     "The first choice!",
     "And another choice for you.",
     "but wait! A third!"
   ];
-})
-
-;
+}]);

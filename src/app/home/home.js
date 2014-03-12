@@ -13,8 +13,8 @@
  * specified, as shown below.
  */
 angular.module( 'ngBoilerplate.home', [
-  'ui.state',
-  'plusOne'
+  'ui.router',
+  'listen2EdmServices'
 ])
 
 /**
@@ -31,15 +31,20 @@ angular.module( 'ngBoilerplate.home', [
         templateUrl: 'home/home.tpl.html'
       }
     },
-    data:{ pageTitle: 'Home' }
+    data: { pageTitle: 'Home' }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
-})
+.controller( 'HomeCtrl', ['$scope', 'trackData', function($scope, trackData) {
+  $scope.currentTrack = trackData.getCurrentTrack();
 
-;
+  $scope.trackData = trackData;
+  $scope.$watch('trackData.getCurrentTrack()', function(newValue) {
+    $scope.currentTrack = newValue;
+  });
+
+}]);
 
