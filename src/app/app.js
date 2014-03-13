@@ -21,7 +21,7 @@ angular.module( 'ngBoilerplate', [
 
 .controller( 'AppCtrl', ['$scope', '$location', 'trackData', 'edmTags', 'edmTracks', 'edmGetTrack', function AppCtrl ( $scope, $location, trackData, edmTags, edmTracks, edmGetTrack) {
   $scope.playlist = [];
-  $scope.edmTags = edmTags.query();
+  //$scope.edmTags = edmTags.query();
   $scope.edmTracks = edmTracks.query({}, function(data) {
     _.each(data, function(value, key) {
       $scope.playlist[key] = {};
@@ -33,10 +33,10 @@ angular.module( 'ngBoilerplate', [
         
          //value.soundcloud.artwork_url.split('-').splice(-1).replace('large', 't500x500');
         $scope.playlist[key].src = value.soundcloud.stream_url + '?client_id=127b2e9be345501602ef7a47901e8142';
+        $scope.playlist[key].type = 'audio/mp3';
       }
     });
 
-    //console.log(playlist);
     $scope.test = edmGetTrack.get({url: data[0].soundcloud.uri}, function(data) {
       $scope.setCurrentTrack($scope.edmTracks[0].soundcloud);
       $scope.currentTrack = $scope.edmTracks[0].soundcloud;
