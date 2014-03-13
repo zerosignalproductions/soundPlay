@@ -8,6 +8,8 @@ angular.module( 'ngBoilerplate', [
   'ui.router'
 ])
 
+.value('$anchorScroll', angular.noop)
+
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, $locationProvider ) {
   $urlRouterProvider.otherwise( '/home' );
 

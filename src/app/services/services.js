@@ -42,6 +42,20 @@ listen2EdmServices.service('trackData', function () {
   };
 });
 
+
+listen2EdmServices.factory('API', ['$resource',
+  function($resource) {
+    return {
+      Tag: $resource('http://listen2edm.com/api/tags/', {}, {
+        get: { method: 'GET', params: { key: '2e423223ad6c15256d910c38218d8351' }, isArray: true }
+      }),
+      Track: $resource('assets/testTracks.json', {}, {
+        get: { method: 'GET', params: { key: '2e423223ad6c15256d910c38218d8351' } }
+      })         
+    };
+  }
+]);
+
  
 listen2EdmServices.factory('edmTags', ['$resource',
   function($resource) {

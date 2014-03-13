@@ -1,12 +1,12 @@
 <div class="jumbotron">
-  <img ng-src="{{currentTrack.artwork_url}}">
-  <p class="">{{currentTrack.title}}</p>
-  <p class="">{{currentTrack.description}}</p>
-  <p class="">{{currentTrack.genre}}</p>
-  <p class="">{{currentTrack.permalink_url}}</p>
-  <p class="">{{currentTrack.tag_list}}</p>
+  <img class="track-author-artwork" ng-src="{{currentTrack.artwork_url}}">
+  <h2 class="track-title">{{currentTrack.title}}</h2>
+  <p class="track-description">{{currentTrack.description}}</p>
+  <p class="track-genre">{{currentTrack.genre}}</p>
+  <p class="track-permalink">{{currentTrack.permalink_url}}</p>
+  <p class="track-tags">{{currentTrack.tag_list}}</p>
 
-  <img ng-src="{{currentTrack.user.avatar_url}}">
-  <p class="">{{user.uri}}</p>
-  <p class="">{{user.username}}</p>
+  <img class="track-author-image" ng-src="{{currentTrack.user.avatar_url}}">
+  <p class="track-author-uri">{{user.uri}}</p>
+  <p class="track-author-user">{{user.username}}</p>
 </div>
