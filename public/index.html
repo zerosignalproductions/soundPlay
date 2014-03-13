@@ -102,13 +102,13 @@
         <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
           <ul class="nav pull-right">
             <li class="back-button">
-              <a ng-click="audioPlayer.play(audioPlayer.currentTrack - 2)"><i class="icon-step-backward"></i></a>
+              <a ng-click="prevTrack(audioPlayer.currentTrack)"><i class="icon-step-backward"></i></a>
             </li>
             <li class="playpause-button">
               <a ng-click="audioPlayer.playPause()"><i class="icon-play" ng-show="!audioPlayer.playing"></i><i class="icon-pause" ng-show="audioPlayer.playing"></i></a>
             </li>
             <li class="next-button">
-              <a ng-click="audioPlayer.play(audioPlayer.currentTrack)"><i class="icon-step-forward"></i></a>
+              <a ng-click="nextTrack(audioPlayer.currentTrack)"><i class="icon-step-forward"></i></a>
             </li>
           </ul>
         </div>

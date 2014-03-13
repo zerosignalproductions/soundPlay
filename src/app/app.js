@@ -49,8 +49,31 @@ angular.module( 'ngBoilerplate', [
   };  
 
   $scope.$on('audioplayer:play', function (scope, index) {
+    console.log('play' + index);
     $scope.setCurrentTrack($scope.edmTracks[index].soundcloud);
   });
+
+  $scope.$on('audioplayer:pause', function () {
+    console.log('paused');
+  });
+
+  $scope.$on('audioplayer:load', function (autoplayNext, test) {
+    console.log(test);
+  });
+
+  $scope.prevTrack = function(index) {
+    if(index > 1) {
+      $scope.setCurrentTrack($scope.edmTracks[index - 2].soundcloud);
+      $scope.audioPlayer.prev();
+    }
+  };  
+
+  $scope.nextTrack = function(index) {
+    if(index < $scope.playlist.length) {
+      $scope.setCurrentTrack($scope.edmTracks[index].soundcloud);
+      $scope.audioPlayer.next();
+    }
+  };
 
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
     if ( angular.isDefined( toState.data.pageTitle ) ) {
