@@ -18,14 +18,10 @@ http://listen2edm.com/api/tracks?slug=remix&offset=25&key=2e423223ad6c15256d910c
 http://listen2edm.com/api/tracks?id=6050&key=2e423223ad6c15256d910c38218d8351
   # returns track 6050
 
-
 [
   { src: 'http://some.where.com', type: 'audio/ogg' },
 
 */
-
-
-
 
 var listen2EdmServices = angular.module('listen2EdmServices', ['ngResource']);
 
@@ -42,7 +38,6 @@ listen2EdmServices.service('trackData', function () {
   };
 });
 
-
 listen2EdmServices.factory('API', ['$resource',
   function($resource) {
     return {
@@ -56,7 +51,6 @@ listen2EdmServices.factory('API', ['$resource',
   }
 ]);
 
- 
 listen2EdmServices.factory('edmTags', ['$resource',
   function($resource) {
     return $resource('http://listen2edm.com/api/tags', {}, {
@@ -80,3 +74,33 @@ listen2EdmServices.factory('edmGetTrack', ['$resource',
     });
   }
 ]);
+
+listen2EdmServices.factory('playlistFactory', function() {
+  return {
+    testFunction: function() {
+      console.log('test');
+    },
+    updatePlaylistArtwork: function(data) {
+      _.each(data, function(value, key) {
+        if(typeof value.soundcloud !== 'undefined' && value.soundcloud.streamable) {
+          //Pull the largest available image
+          value.soundcloud.artwork_url = value.soundcloud.artwork_url.split('-').slice(0 , -1).join('-') + 
+          value.soundcloud.artwork_url.split('-').slice(-1)[0].replace('large', '-t500x500');
+        }
+      });
+    },
+    createAudioPlaylist: function(data) {
+      var playlist = [];
+
+      _.each(data, function(value, key) {
+        playlist[key] = {};
+
+        if(typeof value.soundcloud !== 'undefined' && value.soundcloud.streamable) {
+          playlist[key].src = value.soundcloud.stream_url + '?client_id=127b2e9be345501602ef7a47901e8142';
+          playlist[key].type = 'audio/mp3';
+        }
+      });
+      return playlist;
+    }
+  };             
+});
