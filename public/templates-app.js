@@ -5,32 +5,26 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
     "<div class=\"row-fluid\">\n" +
     "  <h1 class=\"page-header\">About</h1>\n" +
     "  \n" +
-    "  <p>Listen2EDM is a playlist for all the tracks from on the EDM.com network.</p>\n" +
+    "  <p>soundPlay is a simple app to pull random playlists from SoundCloud. The idea for this app came from Josh over at <a href=\"http://listen2edm.com\">Listen2EDM</a></p>\n" +
     "\n" +
-    "  <h3>Doesn't that defeat the purpose of the EDM.com network of sites?</h3>\n" +
-    "  <p>Not if you just want to listen to music.</p>\n" +
-    "  <h3>Why can't I x, y, or z? Why is it so ugly?</h3>\n" +
-    "  <p>Because I want to see if people like the idea of it first before I invest some time into it.</p>\n" +
-    "  <h3>Is this illegal?</h3>\n" +
-    "  <p>Nope, just streaming shit from SoundCloud.</p>\n" +
-    "  <h3>Again, doesn't that defeat the purpose of EDM.com and their sister sites?</h3>\n" +
-    "  <p>Again... Not if you just want to listen to music.</p>\n" +
-    "  <h3>I like this. Will it always be free?</h3>\n" +
-    "  <p>Yep. I won't even think about putting ads on it.</p>\n" +
-    "  <h3>Who are you?</h3>\n" +
-    "  <p>Some kid named Josh Brody from Minneapolis. Feel free to creep or network.\n" +
+    "  <p>If you're into electronic music, go give his site a look.</p>\n" +
+    "\n" +
+    "  <h3>What's behind it?</h3>\n" +
+    "  <p>I'm using AngularJS, Bootstrap, and NodeJS to power the website. All of the data is pulled from the SoundCloud API.</p>\n" +
+    "\n" +
+    "  <h3>What about new features?</h3>\n" +
+    "  <p>Send me an email or hit me up on Github if you'd like to see any new features or come across any bugs.</p>\n" +
+    "\n" +
+    "  <h3>Why are there bugs?</h3>\n" +
+    "  <p>This is just a side project for fun, so there will definitely be bugs. Send me an email if you find anything.</p>\n" +
+    "\n" +
+    "\n" +
     "  <ul>\n" +
-    "    <li><a href=\"http://facebook.com/justadorbs\">Facebook</a></li>\n" +
-    "    <li><a href=\"http://linkedin.com/in/joshmn\">LinkedIn</a></li>\n" +
-    "    <li><a href=\"http://angel.co/joshmn\">Angel.Co</a></li>\n" +
-    "    <li><a href=\"mailto:josh@josh.mn\">Email: josh@josh.mn</a></li>\n" +
+    "    <li><a href=\"http://github.com/zerosignalproductions\">Github</a></li>\n" +
+    "    <li><a href=\"http://linkedin.com/in/justindmyers\">LinkedIn</a></li>\n" +
+    "    <li><a href=\"mailto:justin@justindmyers.com\">Email: justin@justindmyers.com</a></li>\n" +
     "  </ul></p>\n" +
     "\n" +
-    "  <h3>You seem smart. Do you do anything else?</h3>\n" +
-    "  <p>Yeah, I do. Lots of things.</p>\n" +
-    "\n" +
-    "  <h3>Are you available for work?</h3>\n" +
-    "  <p>Yep. I'm currently broke as a joke paying out-of-pocket for my mom's chemo. It's depressing. I cleared out $150k+ paying for her <i>\"specialized treatments\"</i> and that only took 5 months to do. I'll take any work I can get right now.</p>\n" +
     "</div>\n" +
     "\n" +
     "");
