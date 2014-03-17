@@ -21,7 +21,7 @@
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700,300italic,400italic,700italic">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -35,7 +35,7 @@
   </head>
   <body>
     <nav class="navbar navbar-inverse">
-      <div class="container">
+      <div class="">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" ng-click="isCollapsed = !isCollapsed">
             <span class="sr-only">Toggle navigation</span>
@@ -43,17 +43,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Listen2EDM<sup>alpha</sup></a>
+          <a class="navbar-brand" href="#">soundPlay<sup>&alpha;</sup></a>
         </div>      
         <div class="collapse navbar-collapse bs-navbar-collapse" collapse="!isCollapsed">      
           <ul class="nav navbar-nav navbar-right">
-            <li ui-route="/home" ng-class="{active:$uiRoute}">
-              <a href="/">
+            <li ui-route="/home" ng-class="{active: $uiRoute}" ui-sref-active="active">
+              <a ui-sref="home">
                 Home
               </a>
             </li>
-            <li ui-route="/about" ng-class="{active:$uiRoute}">
-              <a href="/about">
+            <li ui-route="/playlist" ng-class="{active: $uiRoute}" ui-sref-active="active">
+              <a ui-sref="playlist">
+                Playlist
+              </a>
+            </li>            
+            <li ui-route="/about" ng-class="{active: $uiRoute}" ui-sref-active="active">
+              <a ui-sref="about">
                 About
               </a>
             </li>
@@ -68,8 +73,13 @@
     </nav>
 
     <div class="nav-content-container">
-      <div class="content-aside"></div>
-      <div class="container" ui-view="main"></div>
+      <div class="content-aside">
+        <h2>Category</h2>
+        <div class="categories list-group">
+          <a href="#" class="list-group-item ng-class: {'active': category == currentCategory }" ng-repeat="category in categories" ng-click="selectCategory(category)">{{category}} <i class="icon-spinner" ng-show="loadingNewCategory && category == currentCategory"></i></a>
+        </div>
+      </div>
+      <div class="content-main" ui-view="main"></div>
     </div>
 
     <div class="audio-player-container">
@@ -77,12 +87,12 @@
         <source src="">
       </audio>
 
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: audioPlayer.currentTime*100/audioPlayer.duration + '%' }">
-          <span class="sr-only ng-binding">null% Complete</span>
+      <div class="progress" ng-click="jumpToTime($event)">
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{ width: audioPlayer.currentTime * 100 / audioPlayer.duration + '%' }">
+          <span class="sr-only ng-binding">{{ audioPlayer.currentTime * 100 / audioPlayer.duration }}% Complete</span>
         </div>
-        <div class="time ng-hide" ng-show="audioPlayer.formatTime">
-          <span class="ng-binding"></span><b>/</b><span class="ng-binding"></span>
+        <div class="time" ng-show="audioPlayer.formatTime">
+          <span>{{ audioPlayer.formatTime }}</span><b>/</b><span>{{ audioPlayer.formatDuration }}</span>
         </div>
       </div>
 
@@ -101,7 +111,7 @@
         </div>
 
         <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
-          <ul class="nav pull-right">
+          <ul class="nav pull-right audio-player-nav">
             <li class="back-button">
               <a ng-click="prevTrack(audioPlayer.currentTrack)"><i class="icon-step-backward"></i></a>
             </li>

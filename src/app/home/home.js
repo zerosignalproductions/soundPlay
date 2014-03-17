@@ -26,7 +26,7 @@ angular.module( 'ngBoilerplate.home', [
   $stateProvider.state( 'home', {
     url: '/',
     views: {
-      "main": {
+      'main': {
         controller: 'HomeCtrl',
         templateUrl: 'home/home.tpl.html'
       }
@@ -40,10 +40,11 @@ angular.module( 'ngBoilerplate.home', [
  */
 .controller( 'HomeCtrl', ['$scope', 'trackData', function($scope, trackData) {
   $scope.currentTrack = trackData.getCurrentTrack();
+  
   $scope.trackData = trackData;
+
   $scope.$watch('trackData.getCurrentTrack()', function(newValue) {
     $scope.currentTrack = newValue;
+    console.log(newValue);
   });
-
 }]);
-

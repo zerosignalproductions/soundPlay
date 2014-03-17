@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <h1 class="page-header">Playlist</h1>
+
+  <div class="alert alert-info" ng-show="!currentTrack">
+    Select a category from the category list!
+  </div>
+
+  <div class="table-responsive" ng-show="currentTrack">
+    <table class="playlist-table table table-striped table-hover">
+      <thead>
+        <tr>
+          <td></td>
+          <td><span class="visually-hidden">Track</span> #</td>
+          <td>Art</td>
+          <td>Time</td>
+          <td>Username</td>
+          <td>Track Title</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="track in playlist">
+          <td></td>
+          <td>{{$index + 1}}</td>
+          <td><img src="{{track.data.artwork_url}}"></td>
+          <td>{{track.data.duration | date:'mm:ss'}}</td>
+          <td>{{track.data.user.username}}</td>
+          <td>{{track.data.title}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

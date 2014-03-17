@@ -1,5 +1,11 @@
-<div class="jumbotron">
-  <img class="track-author-artwork" ng-src="{{currentTrack.artwork_url}}">
+<h1 class="page-header">Now Playing</h1>
+
+<div class="alert alert-info" ng-show="!currentTrack">
+  Select a category from the category list!
+</div>
+
+<div class="jumbotron" ng-show="currentTrack">
+  <img class="track-author-artwork" ng-src="{{currentTrack.artwork_url_large}}">
   <h2 class="track-title">{{currentTrack.title}}</h2>
   <p class="track-description">{{currentTrack.description}}</p>
   <p class="track-genre">{{currentTrack.genre}}</p>
