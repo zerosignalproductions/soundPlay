@@ -107,6 +107,15 @@ img { max-width: 100%; }
       &:last-child a { }
     }
   }
+
+  .navbar-toggle {
+    background-color: @navbar-inverse-toggle-bg;
+  }
+
+  .navbar-right:last-child {
+    margin-right: 0;
+  }
+
 }
 
 /**
@@ -120,6 +129,17 @@ img { max-width: 100%; }
   width: 230px;
   overflow: scroll;
   background: #fff;
+  z-index: 50;
+
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+
+  &.offcanvas.in {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
   h2 {
     font-size: 20px;
@@ -145,7 +165,7 @@ img { max-width: 100%; }
   position: absolute;
   top: 0;
   right: 0;
-  left: 230px;
+  left: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   bottom: 0;
@@ -154,12 +174,14 @@ img { max-width: 100%; }
   -moz-box-shadow: inset 0px -1px 5px 0px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0px -1px 5px 0px rgba(0, 0, 0, 0.1);
 
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;  
 }
 
 /**
  * Fixed Audio Bar
  */
-.nav-content-container { 
+.content-container { 
   position: absolute;
   top: 57px;
   bottom: 65px;
@@ -178,6 +200,7 @@ img { max-width: 100%; }
   right: 0;
   background-color: @brand-primary;
   overflow: visible;
+  z-index: 60;
 
   .container-fluid {
     width: 100%;
@@ -333,6 +356,39 @@ img { max-width: 100%; }
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+
+// Small grid
+//
+// Columns, offsets, pushes, and pulls for the small device range, from phones
+// to tablets.
+
+@media (min-width: @screen-sm-min) {
+  .content-aside { display: block; 
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  .content-main { left: 230px; }
+}
+
+
+// Medium grid
+//
+// Columns, offsets, pushes, and pulls for the desktop device range.
+
+@media (min-width: @screen-md-min) {
+
+}
+
+
+// Large grid
+//
+// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+@media (min-width: @screen-lg-min) {
+
+}
+
 
 
 /**

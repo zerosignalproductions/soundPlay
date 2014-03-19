@@ -6,7 +6,8 @@ angular.module( 'ngBoilerplate', [
   'ngBoilerplate.home',
   'ngBoilerplate.about',
   'ngBoilerplate.playlist',
-  'ui.router'
+  'ui.router',
+  'ui.offcanvas'
 ])
 
 .constant('appConfig', {

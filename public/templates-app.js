@@ -67,7 +67,7 @@ angular.module("playlist/playlist.tpl.html", []).run(["$templateCache", function
     "      <thead>\n" +
     "        <tr>\n" +
     "          <td></td>\n" +
-    "          <td><span class=\"visually-hidden\">Track</span> #</td>\n" +
+    "          <td><span class=\"sr-only\">Track</span> #</td>\n" +
     "          <td>Art</td>\n" +
     "          <td>Time</td>\n" +
     "          <td>Username</td>\n" +
