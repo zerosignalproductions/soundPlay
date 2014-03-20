@@ -38,8 +38,6 @@ angular.module( 'ngBoilerplate', [
   $scope.currentTrack = {};
   $scope.currentCategory = '';
 
-  console.log($scope.uiRoute);
-
   //Get all of the categories available
   $scope.musicCategories = API.Explore_Category.get({}, function(data) {
     $scope.categories = data.categories.music;
@@ -48,6 +46,9 @@ angular.module( 'ngBoilerplate', [
   $scope.selectCategory = function(categoryName) {
     $scope.loadingNewCategory = true;
     $scope.currentCategory = categoryName;
+
+    //First, pause the audio player
+    $scope.audioPlayer.pause();
 
     //Get the list of songs in this category
     $scope.edmTracks = API.Explore_Tracks.get({ category: categoryName, limit: 50, tag: 'uniform-time-decay-experiement:1:' + Date.now()  }, function(data) {
@@ -72,7 +73,7 @@ angular.module( 'ngBoilerplate', [
         //Set the current track for the view
         $scope.setCurrentTrack(data[0]);
         $scope.currentTrack = data[0];
-        
+        $scope.audioPlayer.currentTrack = 0;
         $scope.loadingNewCategory = false;
       });
     });
@@ -104,7 +105,7 @@ angular.module( 'ngBoilerplate', [
   $scope.setPlaylist = function(newValue) {
     $scope.playlist = newValue;
     playlistData.setPlaylist(newValue);
-  };  
+  };
 
   $scope.prevTrack = function(index) {
     if(index > 1) {
@@ -120,9 +121,7 @@ angular.module( 'ngBoilerplate', [
     }
   };
 
-  $scope.jumpToTime = function(event) {
-    console.log(event.offsetX);
-  };
+  $scope.jumpToTime = function(event) { };
 
   function shuffle(array) {
     var currentIndex = array.length,

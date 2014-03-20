@@ -30,8 +30,5 @@ angular.module( 'ngBoilerplate.playlist', [
 
   $scope.$watch('trackData.getCurrentTrack()', function(newValue) {
     $scope.currentTrack = newValue;
-    console.log(newValue);
   });
-
-  console.log($scope.playlist);
 }]);

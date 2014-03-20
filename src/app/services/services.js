@@ -76,7 +76,7 @@ listen2EdmServices.factory('API', ['$resource', 'appConfig',
         get: { method: 'GET', params: { } }
       }),
 
-      Tag: $resource('//api.soundcloud.com/tracks', { consumer_key: appConfig.soundcloud.consumer_key }, {
+      Tag: $resource('//api.soundcloud.com/tracks', { consumer_key: appConfig.soundcloud.consumer_key, streamable: true }, {
         get: { method: 'GET', params: { consumer_key: appConfig.soundcloud.consumer_key }, isArray: true }
       }),
 
@@ -95,28 +95,28 @@ listen2EdmServices.factory('playlistFactory', ['appConfig', function(appConfig) 
   return {
     updatePlaylistArtwork: function(data, isSoundCloud) {
       _.each(data, function(value, key) {
-        if(value.artwork_url !== null && isSoundCloud && value.streamable) {
+        if(value.artwork_url !== null && isSoundCloud && value.streamable !== null) {
           value.artwork_url_large = value.artwork_url.split('-').slice(0 , -1).join('-') + 
           value.artwork_url.split('-').slice(-1)[0].replace('large', '-t500x500');
-        } else if(typeof value.soundcloud !== 'undefined' && value.soundcloud.streamable) {
-          //Pull the largest available image
-          value.soundcloud.artwork_url_large = value.soundcloud.artwork_url.split('-').slice(0 , -1).join('-') + 
-          value.soundcloud.artwork_url.split('-').slice(-1)[0].replace('large', '-t500x500');
+        } else if (value.artwork_url === null) {
+          value.artwork_url = 'assets/img/music.png';
         }
       });
     },
     createAudioPlaylist: function(playlist, data, isSoundCloud) {
-      _.each(data, function(value, key) {
-        playlist[key] = {};
+      var keyCounter = 0,
+          temp = {};
 
-        if(isSoundCloud && value.streamable) {
-          playlist[key].src = value.stream_url + '?client_id=' + appConfig.soundcloud.consumer_key;
-          playlist[key].type = 'audio/mp3';
-          playlist[key].data = value;
-        } else if(typeof value.soundcloud !== 'undefined' && value.soundcloud.streamable) {
-          playlist[key].src = value.soundcloud.stream_url + '?client_id=' + appConfig.soundcloud.consumer_key;
-          playlist[key].type = 'audio/mp3';
-          playlist[key].data = value.soundcloud;
+          playlist.length = 0;
+
+      _.each(data, function(value, key) {
+        if(isSoundCloud && value.streamable !== null) {
+          playlist[keyCounter] = {};
+          
+          playlist[keyCounter].src = value.stream_url + '?client_id=' + appConfig.soundcloud.consumer_key;
+          playlist[keyCounter].type = 'audio/mp3';
+          playlist[keyCounter].data = value;
+          keyCounter++;
         }
       });
       return playlist;
